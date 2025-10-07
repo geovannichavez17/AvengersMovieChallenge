@@ -25,6 +25,21 @@ struct Movie: Decodable, Identifiable, Hashable {
     }
 }
 
+
+struct MovieDetail: Decodable {
+    let title: String
+    let overview: String
+    let backgroundImage: String
+    let voteAverage: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case overview
+        case backgroundImage = "backdrop_path"
+        case voteAverage = "vote_average"
+    }
+}
+
 struct PagedResponse<T: Decodable>: Decodable {
     let page: Int
     let results: [T]
@@ -35,5 +50,15 @@ struct PagedResponse<T: Decodable>: Decodable {
         case page, results
         case totalPages = "total_pages"
         case totalResults = "total_results"
+    }
+}
+
+struct SessionToken: Codable, Hashable {
+    let success: Bool
+    let sessionId: String
+    
+    enum CodingKeys: String, CodingKey {
+        case success
+        case sessionId = "guest_session_id"
     }
 }

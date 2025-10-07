@@ -48,23 +48,6 @@ struct K {
         static let defaultLongitude = -89.2246634
     }
     
-    static var screenWidth: CGFloat = 0
-    
-    static let dateFormatApp = "MM-yyyy"
-    static let dateFormatDisplay = "dd/MM/yyyy"
-    static let dateFormatDisplayShort = "dd/MM/yy"
-    static let dateFormatServer = "yyyy-MM-dd'T'HH:mm:ss"
-    static let dateFormatAppMask = "##-####"
-    static let appMinDate = "01-01-1900"
-    
-    static let googleMapsApiKey = "AIzaSyAyYAQkiGzGLlWK9yLN9sMFeHxRNdhCxZc"
-    static let geocodingURL = "https://maps.googleapis.com/maps/api/geocode/json?"
-    
-    struct Dimmensions {
-        static let textFieldHeight : CGFloat = 45.0
-        static let buttonHeight: CGFloat = 45.0
-    }
-    
     struct UserDefaultsKeys {
         static let minPurchaseAmount = "minimumPurchaseAmount"
     }
