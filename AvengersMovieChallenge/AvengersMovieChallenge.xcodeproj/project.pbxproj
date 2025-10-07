@@ -24,6 +24,7 @@
 		2D3DC44D2E94FF2D00FE9208 /* MoviesServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3DC44C2E94FF2D00FE9208 /* MoviesServices.swift */; };
 		2D3DC44F2E95000100FE9208 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3DC44E2E95000100FE9208 /* NetworkClient.swift */; };
 		2D3DC4532E95071400FE9208 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3DC4522E95071400FE9208 /* MoviesViewModel.swift */; };
+		2D3DC4552E956FAE00FE9208 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3DC4542E956FAE00FE9208 /* MovieDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		2D3DC44C2E94FF2D00FE9208 /* MoviesServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesServices.swift; sourceTree = "<group>"; };
 		2D3DC44E2E95000100FE9208 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		2D3DC4522E95071400FE9208 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
+		2D3DC4542E956FAE00FE9208 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				2D3DC43A2E94CD5C00FE9208 /* MovieDetailsView.swift */,
+				2D3DC4542E956FAE00FE9208 /* MovieDetailsViewModel.swift */,
 			);
 			path = MovieDetails;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				2D3DC43D2E94DF4700FE9208 /* MovieItemView.swift in Sources */,
 				2D3DC44D2E94FF2D00FE9208 /* MoviesServices.swift in Sources */,
 				2D3DC4532E95071400FE9208 /* MoviesViewModel.swift in Sources */,
+				2D3DC4552E956FAE00FE9208 /* MovieDetailsViewModel.swift in Sources */,
 				2D3DC4452E94F7C700FE9208 /* BaseTarget.swift in Sources */,
 				2D3DC40B2E94CA6B00FE9208 /* AvengersMovieChallengeApp.swift in Sources */,
 				2D3DC4422E94EFE800FE9208 /* Models.swift in Sources */,

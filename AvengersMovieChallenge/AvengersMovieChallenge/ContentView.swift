@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    init() {
-        /*UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]*/
+    /*init() {
+        //UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -21,11 +21,17 @@ struct ContentView: View {
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         //UINavigationBar.appearance().tintColor = .white
-    }
+    }*/
     var body: some View {
         NavigationStack {
             MoviesView()
         }
+        .navigationBarTitleDisplayMode(.inline) // opcional: evita título grande
+        .toolbarBackground(.hidden, for: .navigationBar) // fondo de la barra transparente
+        .toolbarColorScheme(.dark, for: .navigationBar)  // espera contenido claro (mejora contraste)
+        .tint(.white) // color del chevron y texto “Back”
+        
+        
     }
 }
 

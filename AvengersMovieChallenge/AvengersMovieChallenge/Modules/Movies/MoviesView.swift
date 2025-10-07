@@ -44,8 +44,12 @@ struct MoviesView: View {
         }
         .navigationTitle("Movies")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationDestination(item: $viewModel.movieDetailId) { id in
+            MovieDetailsView(viewModel: MovieDetailViewModel(movieId: id))
+        }
         .toolbarBackground(Color(.darkGunmetal), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
+        
     }
 }
 
