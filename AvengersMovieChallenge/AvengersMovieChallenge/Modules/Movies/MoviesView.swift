@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct MoviesView: View {
+    @StateObject private var viewModel = MoviesViewModel()
     private let columns = [
-            GridItem(.flexible(minimum: 16)),
-            GridItem(.flexible(minimum: 16)),
-        ]
+        GridItem(.flexible(minimum: 16)),
+        GridItem(.flexible(minimum: 16)),
+    ]
     var body: some View {
         ZStack {
             Color.yellow.ignoresSafeArea(.all)
@@ -19,20 +20,23 @@ struct MoviesView: View {
             VStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 0) {
-                        ForEach(0..<10) { item in
-                            //Text("Fila \(item)")
-                            MovieItemView()
+                        ForEach(viewModel.nowPlaying) { item in
+                            MovieItemView(movie: item)
+                                .frame(height: 350)
+                                .onTapGesture {
+                                    viewModel.movieDetailId = item.id
+                                }
                         }
                     }
                     
-                    /*LazyVStack {
+                    LazyVStack {
                         if !viewModel.isFinished {
                             ProgressView()
                                 .onAppear {
                                     viewModel.fetchNowPlaying()
                                 }
                         }
-                    }*/
+                    }
                 }
             }
             .padding()

@@ -14,7 +14,8 @@ struct K {
     static let AppEnvironmentUAT = "UAT"
     
     static let baseUrl = "https://api.themoviedb.org/3"
-    static let apiKey = "ab65056aec4718c09214d4a7eccd5880"
+    static let imageBasePath = "https://image.tmdb.org/t/p/w500"
+    static let apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYjY1MDU2YWVjNDcxOGMwOTIxNGQ0YTdlY2NkNTg4MCIsInN1YiI6IjYwMzA3OGFhN2Y2YzhkMDAzZjBmN2FlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.m1iwx98S8xTSrFWbDFbL2rzqaIBvNOXjcyf1ycJ9ak8"
     
     
     struct Common {

@@ -10,7 +10,7 @@ import Combine
 
 protocol MoviesServiceType {
     func createSession() -> AnyPublisher<SessionToken, Error>
-    func fetchMovies(query: String, on page: Int) -> AnyPublisher<PagedResponse<[Movie]>, Error>
+    func fetchMovies(query: String, on page: Int) -> AnyPublisher<PagedResponse<Movie>, Error>
     func getMovieDetail(id: Int) -> AnyPublisher<MovieDetail, Error>
 }
 
@@ -33,7 +33,7 @@ struct MoviesService: MoviesServiceType {
         dependencies.networkService.request(MoviesTarget.createSession)
     }
     
-    func fetchMovies(query: String, on page: Int) -> AnyPublisher<PagedResponse<[Movie]>, Error> {
+    func fetchMovies(query: String, on page: Int) -> AnyPublisher<PagedResponse<Movie>, Error> {
         dependencies.networkService.request(MoviesTarget.searchMovie(query: query, page: page))
     }
     

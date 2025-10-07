@@ -8,34 +8,46 @@
 import SwiftUI
 
 struct MovieItemView: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-                    Rectangle()
-                    .frame(height: 180)
-                    
-                    Text("Prueba" ?? "")
-                        .font(.body)
-                        .bold()
-                    
+    var movie: Movie
+        
+        var body: some View {
+            VStack(alignment: .leading, spacing: 8) {
+                AsyncImage(url: URL(string: K.imageBasePath + (movie.posterPath ?? ""))) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(163/180, contentMode: .fit)
+                } placeholder: {
                     HStack {
-                        Text("ReleaseDate" ?? "")
-                            .font(.caption)
                         Spacer()
-                        Image(systemName: "star.fill")
-                        Text(String("5.2"))
-                            .font(.caption)
+                        ProgressView()
+                        Spacer()
                     }
-                    
-                    Text("Very bad movie" ?? "")
+                }
+                .frame(height: 180)
+                
+                Text(movie.title ?? "")
+                    .font(.body)
+                    .bold()
+                
+                HStack {
+                    Text(movie.releaseDate ?? "")
+                        .font(.caption)
+                    Spacer()
+                    Image(systemName: "star.fill")
+                    Text(String(movie.voteAverage ?? 0))
                         .font(.caption)
                 }
-                .padding()
-                .foregroundStyle(.white)
-                .background(Color.darkGunmetal)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-    }
+                
+                Text(movie.overview ?? "")
+                    .font(.caption)
+            }
+            .padding()
+            .foregroundStyle(.white)
+            .background(Color(.darkGunmetal))
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+        }
 }
 
 #Preview {
-    MovieItemView()
+    MovieItemView(movie: Movie(id: 1, title: "Title", overview: "Overview", releaseDate: nil, posterPath: nil, originalLanguage: nil, voteAverage: 5))
 }
