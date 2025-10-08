@@ -15,11 +15,11 @@ protocol MoviesServiceType {
 }
 
 protocol MoviesServiceDependenciesType {
-    var networkService: NetworkClientType { get }
+    var networkClient: NetworkClientType { get }
 }
 
 struct MoviesServiceDependencies: MoviesServiceDependenciesType {
-    var networkService: NetworkClientType = NetworkClient()
+    var networkClient: NetworkClientType = NetworkClient()
 }
 
 struct MoviesService: MoviesServiceType {
@@ -30,14 +30,14 @@ struct MoviesService: MoviesServiceType {
     }
     
     func createSession() -> AnyPublisher<SessionToken, Error> {
-        dependencies.networkService.request(MoviesTarget.createSession)
+        dependencies.networkClient.request(MoviesTarget.createSession)
     }
     
     func fetchMovies(query: String, on page: Int) -> AnyPublisher<PagedResponse<Movie>, Error> {
-        dependencies.networkService.request(MoviesTarget.searchMovie(query: query, page: page))
+        dependencies.networkClient.request(MoviesTarget.searchMovie(query: query, page: page))
     }
     
     func getMovieDetail(id: Int) -> AnyPublisher<MovieDetail, Error> {
-        dependencies.networkService.request(MoviesTarget.movieDetail(id: id))
+        dependencies.networkClient.request(MoviesTarget.movieDetail(id: id))
     }
 }

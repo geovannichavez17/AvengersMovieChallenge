@@ -22,7 +22,6 @@ class MoviesViewModel: ObservableObject {
     @Published var movies: [Movie] = []
     @Published var isFinished = false
     @Published var currentPage = 0
-    //@Published var movieDetailId: Int?
     @Published var selectedMovie: Movie?
     
     private let dependencies: MoviesViewModelDependenciesType
@@ -38,7 +37,7 @@ class MoviesViewModel: ObservableObject {
     
     func fetchNowPlaying() {
         dependencies.moviesService
-            .fetchMovies(query: "Avengers", on: nextPage)
+            .fetchMovies(query: "Avengers", on: nextPage) // Manda request con query de búsqueda
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveRequest: { [weak self] _ in
                 self?.isLoading = true
@@ -53,6 +52,7 @@ class MoviesViewModel: ObservableObject {
                     break
                 }
             } receiveValue: { [weak self] response in
+                // Publica los cambios según la respuesta
                 self?.movies += response.results
                 self?.isFinished = response.page == response.totalPages
                 self?.currentPage = response.page

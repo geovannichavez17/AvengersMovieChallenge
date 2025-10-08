@@ -1,0 +1,16 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "id": 123,
+      "title": "Batman Begins",
+      "overview": "Origins of the Dark Knight",
+      "release_date": "2005-06-15",
+      "poster_path": "/abcd.jpg",
+      "original_language": "en",
+      "vote_average": 7.8
+    }
+  ],
+  "total_pages": 10,
+  "total_results": 100
+}

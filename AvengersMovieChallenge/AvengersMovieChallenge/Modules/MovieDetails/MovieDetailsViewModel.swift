@@ -36,6 +36,8 @@ class MovieDetailViewModel: ObservableObject {
     
     func fetchMovieInformation() {
         fetchMovieDetail()
+        
+        // Para que isFavorite no se quede desfasado hasta que el usuario toque el botón
         Task { await refreshFavoriteFlag() }
     }
     
@@ -63,6 +65,7 @@ class MovieDetailViewModel: ObservableObject {
                     print(error)
                 }
             } receiveValue: { [weak self] movieDetail in
+                // Publicación de cambios obtenidos de respuesta de request
                 self?.movieDetail = movieDetail
             }
             .store(in: &cancellables)
@@ -71,8 +74,10 @@ class MovieDetailViewModel: ObservableObject {
     private func refreshFavoriteFlag() async {
         do {
             let value = try await dependencies.favoritesRepository.isFavorite(id: Int64(movie.id))
+            // Se actualiza propiedades en el main thread
             await MainActor.run { self.isFavorite = value }
         } catch {
+            // Se actualiza propiedades en el main thread
             await MainActor.run { self.isFavorite = false }
         }
     }
