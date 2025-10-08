@@ -32,14 +32,14 @@ struct FavoriteItemView: View {
                     .font(.body)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text(String(format: "Vote average: ⭑ %.1f", favorite.voteAverage ?? 0))
+                Text(String(format: "Valoración: ⭑ %.1f", favorite.voteAverage ?? 0))
                     .font(.caption)
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text("Release:")
+                    Text("Estreno:")
                         .font(.caption)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    let releaseDate = (favorite.releaseDate?.isEmpty == false ? favorite.releaseDate?.prefix(4) : nil) ?? "Not available"
+                    let releaseDate = (favorite.releaseDate?.isEmpty == false ? favorite.releaseDate?.prefix(4) : nil) ?? "No disponible"
                     Text(releaseDate)
                         .font(.caption)
                         .foregroundStyle(((favorite.releaseDate?.isEmpty) != nil) ? .ufoGreen : .white)

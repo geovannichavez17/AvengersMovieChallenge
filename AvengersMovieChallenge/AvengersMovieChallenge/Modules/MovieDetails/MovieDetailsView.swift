@@ -25,7 +25,6 @@ struct MovieDetailsView: View {
                     .padding(.horizontal, 16)
                     
                     Spacer()
-                    
                 }
             }
             .ignoresSafeArea(edges: .top)
@@ -67,9 +66,9 @@ struct MovieDetailsView: View {
     private var summary: some View {
         HStack {
             VStack(alignment: .leading, spacing: 16) {
-                Text("Summary")
+                Text("Sinópsis")
                     .font(.title2)
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(Color(.ufoGreen))
                     .bold()
                 Text(viewModel.movieDetail?.title ?? "-")
                     .font(.title)
@@ -80,7 +79,6 @@ struct MovieDetailsView: View {
             Spacer()
             
             Button {
-                print("Pressed fav…")
                 viewModel.toggleFavorite()
             } label: {
                 Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
@@ -92,9 +90,9 @@ struct MovieDetailsView: View {
         
         
         VStack(alignment: .leading, spacing: 16) {
-            Text("Overview")
+            Text("Trama")
                 .font(.headline)
-                .foregroundStyle(Color.white)
+                .foregroundStyle(Color(.lightGray))
                 .bold()
             Text(viewModel.movieDetail?.overview ?? "-")
                 .font(.body)

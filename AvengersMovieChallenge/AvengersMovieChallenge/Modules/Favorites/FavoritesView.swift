@@ -33,7 +33,7 @@ struct FavoritesView: View {
             }
             .ignoresSafeArea(edges: .bottom)
         }
-        .navigationTitle("My Favorites")
+        .navigationTitle("Mis Favoritos")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Color(.darkGunmetal), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)

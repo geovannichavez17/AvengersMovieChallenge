@@ -37,7 +37,7 @@ struct MovieItemView: View {
                 
                 
                 HStack {
-                    let releaseDate = (movie.releaseDate?.isEmpty == false ? movie.releaseDate : nil) ?? "No date available"
+                    let releaseDate = (movie.releaseDate?.isEmpty == false ? movie.releaseDate : nil) ?? "No disponible"
                     Text(releaseDate)
                         .font(.caption)
                     Spacer()
