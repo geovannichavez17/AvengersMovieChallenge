@@ -32,7 +32,7 @@ struct MovieItemView: View {
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
                     .font(.body)
-                    .foregroundStyle(Color(.ufoGreen))
+                    .foregroundStyle(Color(.pacificBlue))
                     .bold()
                 
                 
@@ -42,7 +42,7 @@ struct MovieItemView: View {
                         .font(.caption)
                     Spacer()
                     Text(String(format: "⭑ %.1f", movie.voteAverage ?? 0))
-                        .foregroundStyle(Color(.ufoGreen))
+                        .foregroundStyle(Color(.pacificBlue))
                         .font(.caption)
                         .bold()
                 }

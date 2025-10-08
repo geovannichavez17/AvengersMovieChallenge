@@ -37,7 +37,7 @@ class MoviesViewModel: ObservableObject {
         self.dependencies = dependencies
     }
     
-    func fetchNowPlaying() {
+    func fetchMovies() {
         dependencies.moviesService
             .fetchMovies(query: "Avengers", on: nextPage) // Manda request con query de búsqueda
             .receive(on: DispatchQueue.main)

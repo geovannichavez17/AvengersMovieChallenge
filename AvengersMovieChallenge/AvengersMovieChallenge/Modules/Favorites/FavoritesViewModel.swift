@@ -43,6 +43,7 @@ final class FavoritesViewModel: ObservableObject {
                     return movie
                 }
             } catch {
+                showError = true
                 errorMessage = error.localizedDescription
             }
             isLoading = false

@@ -39,7 +39,8 @@ struct MoviesView: View {
                         if !viewModel.isFinished {
                             ProgressView()
                                 .onAppear {
-                                    viewModel.fetchNowPlaying()
+                                    guard !viewModel.isLoading, !viewModel.isFinished else { return }
+                                    viewModel.fetchMovies()
                                 }
                         }
                     }

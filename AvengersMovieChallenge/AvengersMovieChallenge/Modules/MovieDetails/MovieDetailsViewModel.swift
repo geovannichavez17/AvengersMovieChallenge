@@ -8,12 +8,12 @@
 import Foundation
 import Combine
 
-protocol MoviedetailViewModelDependenciesType {
+protocol MovieDetailViewModelDependenciesType {
     var movieService: MoviesServiceType { get }
     var favoritesRepository: FavoritesRepositoryType { get }
 }
 
-struct MovieDetailViewModelDependencies: MoviedetailViewModelDependenciesType {
+struct MovieDetailViewModelDependencies: MovieDetailViewModelDependenciesType {
     let movieService: MoviesServiceType = MoviesService()
     let favoritesRepository: FavoritesRepositoryType = FavoritesRepositoryCoreData(stack: AppCoreDataStack())
 }
@@ -24,13 +24,13 @@ class MovieDetailViewModel: ObservableObject {
     @Published var showError = false
     @Published var errorMessage = ""
 
-    private let dependencies: MoviedetailViewModelDependenciesType
+    private let dependencies: MovieDetailViewModelDependenciesType
     private let movie: Movie
     private var cancellables: Set<AnyCancellable> = []
     
     init(
         movie: Movie,
-        dependencies: MoviedetailViewModelDependenciesType = MovieDetailViewModelDependencies()
+        dependencies: MovieDetailViewModelDependenciesType = MovieDetailViewModelDependencies()
     ) {
         self.movie = movie
         self.dependencies = dependencies
@@ -63,12 +63,11 @@ class MovieDetailViewModel: ObservableObject {
             .movieService
             .getMovieDetail(id: movie.id)
             .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print(error)
+            .sink { [weak self] completion in
+                guard let self else { return }
+                if case .failure(_) = completion {
+                    self.showError = true
+                    self.errorMessage = K.generalError
                 }
             } receiveValue: { [weak self] movieDetail in
                 guard let self = self else { return }

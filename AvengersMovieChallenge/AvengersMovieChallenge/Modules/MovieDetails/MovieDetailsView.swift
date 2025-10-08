@@ -60,7 +60,7 @@ struct MovieDetailsView: View {
             Spacer()
             Text(String(format: "%.1f", viewModel.movieDetail?.voteAverage ?? 0))
                 .padding()
-                .background(Color.ufoGreen)
+                .background(Color.pacificBlue)
                 .clipShape(Circle())
                 .offset(y: -25)
         }
@@ -73,7 +73,7 @@ struct MovieDetailsView: View {
             VStack(alignment: .leading, spacing: 16) {
                 Text("Sinópsis")
                     .font(.title2)
-                    .foregroundStyle(Color(.ufoGreen))
+                    .foregroundStyle(Color(.pacificBlue))
                     .bold()
                 Text(viewModel.movieDetail?.title ?? "-")
                     .font(.title)
@@ -87,7 +87,7 @@ struct MovieDetailsView: View {
                 viewModel.toggleFavorite()
             } label: {
                 Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
-                    .foregroundStyle(Color(.ufoGreen))
+                    .foregroundStyle(Color(.pacificBlue))
                     .font(.title)
             }
 

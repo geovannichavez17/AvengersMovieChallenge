@@ -36,6 +36,7 @@ final class FavoritesRepositoryCoreData: FavoritesRepositoryType {
 
     public func add(_ movie: Movie) async throws {
         try await stack.container.performBackgroundTask { ctx in
+            ctx.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             let obj = FavoriteMovie(context: ctx)
             obj.id = Int64(movie.id)
             obj.title = movie.title
@@ -49,6 +50,7 @@ final class FavoritesRepositoryCoreData: FavoritesRepositoryType {
 
     public func remove(id: Int64) async throws {
         try await stack.container.performBackgroundTask { ctx in
+            ctx.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             let req: NSFetchRequest<FavoriteMovie> = FavoriteMovie.fetchRequest()
             req.predicate = NSPredicate(format: "id == %d", id)
             for obj in try ctx.fetch(req) { ctx.delete(obj) }

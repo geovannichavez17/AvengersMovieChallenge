@@ -42,7 +42,7 @@ struct FavoriteItemView: View {
                     let releaseDate = (favorite.releaseDate?.isEmpty == false ? favorite.releaseDate?.prefix(4) : nil) ?? "No disponible"
                     Text(releaseDate)
                         .font(.caption)
-                        .foregroundStyle(((favorite.releaseDate?.isEmpty) != nil) ? .ufoGreen : .white)
+                        .foregroundStyle(((favorite.releaseDate?.isEmpty) != nil) ? .pacificBlue : .white)
                 }
                 
             }
