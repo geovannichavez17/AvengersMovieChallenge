@@ -24,7 +24,7 @@ struct MoviesView: View {
                             MovieItemView(movie: item)
                                 .frame(height: 350)
                                 .onTapGesture {
-                                    viewModel.movieDetailId = item.id
+                                    viewModel.selectedMovie = item
                                 }
                         }
                     }
@@ -44,8 +44,8 @@ struct MoviesView: View {
         }
         .navigationTitle("Movies")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationDestination(item: $viewModel.movieDetailId) { id in
-            MovieDetailsView(viewModel: MovieDetailViewModel(movieId: id))
+        .navigationDestination(item: $viewModel.selectedMovie) { movie in
+            MovieDetailsView(viewModel: MovieDetailViewModel(movie: movie))
         }
         .toolbarBackground(Color(.darkGunmetal), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)

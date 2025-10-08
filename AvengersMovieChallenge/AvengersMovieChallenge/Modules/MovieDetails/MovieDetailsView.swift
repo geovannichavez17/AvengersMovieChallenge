@@ -31,6 +31,7 @@ struct MovieDetailsView: View {
             .ignoresSafeArea(edges: .top)
             .onAppear {
                 viewModel.fetchMovieInformation()
+                
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -80,9 +81,10 @@ struct MovieDetailsView: View {
             
             Button {
                 print("Pressed fav…")
+                viewModel.toggleFavorite()
             } label: {
-                Image(systemName: "heart")
-                    .foregroundStyle(Color.white)
+                Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
+                    .foregroundStyle(Color(.ufoGreen))
                     .font(.title)
             }
 
@@ -102,5 +104,6 @@ struct MovieDetailsView: View {
 }
 
 #Preview {
-    MovieDetailsView(viewModel: MovieDetailViewModel(movieId: 1011985))
+    MovieDetailsView(viewModel: MovieDetailViewModel(
+        movie: Movie(id: 1, title: "The Avengers: The Age of Ultron", overview: "Overview: Avengers was first released in 2012. Connection has no local endpoint", releaseDate: "2024-05-02", posterPath: nil, originalLanguage: nil, voteAverage: 5)))
 }

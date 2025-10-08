@@ -22,7 +22,8 @@ class MoviesViewModel: ObservableObject {
     @Published var movies: [Movie] = []
     @Published var isFinished = false
     @Published var currentPage = 0
-    @Published var movieDetailId: Int?
+    //@Published var movieDetailId: Int?
+    @Published var selectedMovie: Movie?
     
     private let dependencies: MoviesViewModelDependenciesType
     

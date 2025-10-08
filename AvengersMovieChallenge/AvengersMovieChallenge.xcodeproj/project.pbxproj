@@ -31,6 +31,7 @@
 		2D3DC46C2E964D1200FE9208 /* FavoriteMovie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3DC46A2E964D1200FE9208 /* FavoriteMovie+CoreDataClass.swift */; };
 		2D3DC46F2E9650A200FE9208 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3DC46E2E9650A200FE9208 /* FavoritesView.swift */; };
 		2D3DC4712E96512A00FE9208 /* FavoriteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3DC4702E96512A00FE9208 /* FavoriteItemView.swift */; };
+		2D3DC4732E96D17100FE9208 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3DC4722E96D17100FE9208 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		2D3DC46A2E964D1200FE9208 /* FavoriteMovie+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteMovie+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2D3DC46E2E9650A200FE9208 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		2D3DC4702E96512A00FE9208 /* FavoriteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteItemView.swift; sourceTree = "<group>"; };
+		2D3DC4722E96D17100FE9208 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +203,6 @@
 				2D3DC4642E964CC300FE9208 /* Storage */,
 				2D3DC4412E94EFE800FE9208 /* Models.swift */,
 				2D3DC4462E94F7E000FE9208 /* K.swift */,
-				2D3DC4562E9645B400FE9208 /* FavoritesRepository.swift */,
 				2D3DC4582E96469600FE9208 /* AvengersMovieData.xcdatamodeld */,
 			);
 			path = Library;
@@ -237,6 +238,8 @@
 		2D3DC4642E964CC300FE9208 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				2D3DC4722E96D17100FE9208 /* CoreDataStack.swift */,
+				2D3DC4562E9645B400FE9208 /* FavoritesRepository.swift */,
 				2D3DC46A2E964D1200FE9208 /* FavoriteMovie+CoreDataClass.swift */,
 				2D3DC4692E964D1200FE9208 /* FavoriteMovie+CoreDataProperties.swift */,
 			);
@@ -397,6 +400,7 @@
 				2D3DC46C2E964D1200FE9208 /* FavoriteMovie+CoreDataClass.swift in Sources */,
 				2D3DC4552E956FAE00FE9208 /* MovieDetailsViewModel.swift in Sources */,
 				2D3DC4452E94F7C700FE9208 /* BaseTarget.swift in Sources */,
+				2D3DC4732E96D17100FE9208 /* CoreDataStack.swift in Sources */,
 				2D3DC40B2E94CA6B00FE9208 /* AvengersMovieChallengeApp.swift in Sources */,
 				2D3DC4422E94EFE800FE9208 /* Models.swift in Sources */,
 				2D3DC46B2E964D1200FE9208 /* FavoriteMovie+CoreDataProperties.swift in Sources */,

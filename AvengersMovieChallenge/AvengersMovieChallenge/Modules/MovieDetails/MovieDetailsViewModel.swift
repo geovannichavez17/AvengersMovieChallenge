@@ -10,41 +10,50 @@ import Combine
 
 protocol MoviedetailViewModelDependenciesType {
     var movieService: MoviesServiceType { get }
+    var favoritesRepository: FavoritesRepositoryType { get }
 }
 
 struct MovieDetailViewModelDependencies: MoviedetailViewModelDependenciesType {
-    var movieService: MoviesServiceType = MoviesService()
+    let movieService: MoviesServiceType = MoviesService()
+    let favoritesRepository: FavoritesRepositoryType = FavoritesRepositoryCoreData(stack: AppCoreDataStack())
 }
 
 class MovieDetailViewModel: ObservableObject {
-    
+    @Published private(set) var isFavorite = false
     @Published var movieDetail: MovieDetail?
-    //@Published var movieVideos: [MovieVideo] = []
-    //@Published var crewList: [Crew] = []
-    
+
     private let dependencies: MoviedetailViewModelDependenciesType
-    private let movieId: Int
-    
+    private let movie: Movie
     private var cancellables: Set<AnyCancellable> = []
     
     init(
-        movieId: Int,
+        movie: Movie,
         dependencies: MoviedetailViewModelDependenciesType = MovieDetailViewModelDependencies()
     ) {
-        self.movieId = movieId
+        self.movie = movie
         self.dependencies = dependencies
     }
     
     func fetchMovieInformation() {
         fetchMovieDetail()
-        //fetchMovieVideos()
-        //fetchCrewList()
+        Task { await refreshFavoriteFlag() }
+    }
+    
+    func toggleFavorite() {
+        Task {
+            do {
+                let movieId = Int64(movie.id)
+                if isFavorite { try await dependencies.favoritesRepository.remove(id: movieId)  }
+                else { try await dependencies.favoritesRepository.add(movie) }
+                await refreshFavoriteFlag()
+            } catch { print("toggleFavorite error: \(error)") }
+        }
     }
     
     private func fetchMovieDetail() {
         dependencies
             .movieService
-            .getMovieDetail(id: movieId)
+            .getMovieDetail(id: movie.id)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -59,42 +68,13 @@ class MovieDetailViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    /*private func fetchMovieVideos() {
-        dependencies
-            .movieService
-            .fetchMovieVideos(id: movieId)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print(error)
-                }
-            } receiveValue: { [weak self] movieVideosResponse in
-                self?.movieVideos = movieVideosResponse
-                    .results
-                    .filter { $0.site == Constants.youtubeName && $0.official }
-            }
-            .store(in: &cancellables)
-    }*/
-    
-    /*private func fetchCrewList() {
-        dependencies
-            .movieService
-            .fetchCrew(id: movieId)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print(error)
-                }
-            } receiveValue: { [weak self] crewResponse in
-                self?.crewList = crewResponse.cast
-            }
-            .store(in: &cancellables)
-    }*/
+    private func refreshFavoriteFlag() async {
+        do {
+            let value = try await dependencies.favoritesRepository.isFavorite(id: Int64(movie.id))
+            await MainActor.run { self.isFavorite = value }
+        } catch {
+            await MainActor.run { self.isFavorite = false }
+        }
+    }
 }
 
