@@ -12,7 +12,8 @@ import CoreData
 final class FavoritesViewModel: ObservableObject {
     @Published var favorites: [Movie] = []
     @Published var isLoading = false
-    @Published var errorMessage: String?
+    @Published var showError = false
+    @Published var errorMessage = ""
 
     private let repository: FavoritesRepositoryType
 

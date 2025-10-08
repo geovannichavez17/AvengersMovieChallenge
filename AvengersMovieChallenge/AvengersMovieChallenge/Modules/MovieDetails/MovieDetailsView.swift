@@ -26,6 +26,11 @@ struct MovieDetailsView: View {
                     
                     Spacer()
                 }
+                .alert(K.errorTitle, isPresented: $viewModel.showError) {
+                    Button("Aceptar", role: .cancel) { }
+                } message: {
+                    Text(viewModel.errorMessage)
+                }
             }
             .ignoresSafeArea(edges: .top)
             .onAppear {

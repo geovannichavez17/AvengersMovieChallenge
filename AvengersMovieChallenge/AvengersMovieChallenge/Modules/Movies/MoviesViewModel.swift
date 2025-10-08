@@ -23,6 +23,8 @@ class MoviesViewModel: ObservableObject {
     @Published var isFinished = false
     @Published var currentPage = 0
     @Published var selectedMovie: Movie?
+    @Published var showError = false
+    @Published var errorMessage = ""
     
     private let dependencies: MoviesViewModelDependenciesType
     
@@ -50,6 +52,8 @@ class MoviesViewModel: ObservableObject {
                 switch completion {
                 case .failure(let error):
                     print(error)
+                    self.showError = true
+                    self.errorMessage = K.generalError
                 case .finished:
                     break
                 }

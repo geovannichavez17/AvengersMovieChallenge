@@ -21,6 +21,8 @@ struct MovieDetailViewModelDependencies: MoviedetailViewModelDependenciesType {
 class MovieDetailViewModel: ObservableObject {
     @Published private(set) var isFavorite = false
     @Published var movieDetail: MovieDetail?
+    @Published var showError = false
+    @Published var errorMessage = ""
 
     private let dependencies: MoviedetailViewModelDependenciesType
     private let movie: Movie
@@ -48,7 +50,11 @@ class MovieDetailViewModel: ObservableObject {
                 if isFavorite { try await dependencies.favoritesRepository.remove(id: movieId)  }
                 else { try await dependencies.favoritesRepository.add(movie) }
                 await refreshFavoriteFlag()
-            } catch { print("toggleFavorite error: \(error)") }
+            } catch {
+                print("toggleFavorite error: \(error)")
+                showError = true
+                errorMessage = K.generalError
+            }
         }
     }
     

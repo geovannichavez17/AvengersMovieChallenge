@@ -29,6 +29,11 @@ struct MoviesView: View {
                         }
                     }
                     .padding()
+                    .alert(K.errorTitle, isPresented: $viewModel.showError) {
+                        Button("Aceptar", role: .cancel) { }
+                    } message: {
+                        Text(viewModel.errorMessage)
+                    }
                     
                     LazyVStack {
                         if !viewModel.isFinished {

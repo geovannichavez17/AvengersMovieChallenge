@@ -23,11 +23,16 @@ struct FavoritesView: View {
                     
                     LazyVStack {
                         if viewModel.isLoading {
-                            ProgressView("Loading favorites…")
+                            ProgressView("Cargando favoritos…")
                         } else if viewModel.favorites.isEmpty {
-                            Text("No saved favorites (yet)")
+                            Text("Sin favoritos aún")
                                 .foregroundStyle(.secondary)
                         }
+                    }
+                    .alert(K.errorTitle, isPresented: $viewModel.showError) {
+                        Button("Aceptar", role: .cancel) { }
+                    } message: {
+                        Text(viewModel.errorMessage)
                     }
                 }
             }
