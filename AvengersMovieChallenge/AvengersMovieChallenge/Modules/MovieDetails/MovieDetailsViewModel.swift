@@ -65,8 +65,9 @@ class MovieDetailViewModel: ObservableObject {
                     print(error)
                 }
             } receiveValue: { [weak self] movieDetail in
+                guard let self = self else { return }
                 // Publicación de cambios obtenidos de respuesta de request
-                self?.movieDetail = movieDetail
+                self.movieDetail = movieDetail
             }
             .store(in: &cancellables)
     }

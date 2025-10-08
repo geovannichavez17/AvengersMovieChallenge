@@ -40,10 +40,12 @@ class MoviesViewModel: ObservableObject {
             .fetchMovies(query: "Avengers", on: nextPage) // Manda request con query de búsqueda
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveRequest: { [weak self] _ in
-                self?.isLoading = true
+                guard let self = self else { return }
+                self.isLoading = true
             })
             .sink { [weak self] completion in
-                self?.isLoading = false
+                guard let self = self else { return }
+                self.isLoading = false
                 
                 switch completion {
                 case .failure(let error):
@@ -52,10 +54,12 @@ class MoviesViewModel: ObservableObject {
                     break
                 }
             } receiveValue: { [weak self] response in
+                guard let self = self else { return }
+                
                 // Publica los cambios según la respuesta
-                self?.movies += response.results
-                self?.isFinished = response.page == response.totalPages
-                self?.currentPage = response.page
+                self.movies += response.results
+                self.isFinished = response.page == response.totalPages
+                self.currentPage = response.page
             }
             .store(in: &cancellables)
     }

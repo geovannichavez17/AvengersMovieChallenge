@@ -32,16 +32,19 @@ struct MovieItemView: View {
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
                     .font(.body)
+                    .foregroundStyle(Color(.ufoGreen))
                     .bold()
+                
                 
                 HStack {
                     let releaseDate = (movie.releaseDate?.isEmpty == false ? movie.releaseDate : nil) ?? "No date available"
                     Text(releaseDate)
                         .font(.caption)
                     Spacer()
-                    Image(systemName: "star.fill")
-                    Text(String(movie.voteAverage ?? 0))
+                    Text(String(format: "⭑ %.1f", movie.voteAverage ?? 0))
+                        .foregroundStyle(Color(.ufoGreen))
                         .font(.caption)
+                        .bold()
                 }
                 
                 Text(movie.overview ?? "")
@@ -57,5 +60,13 @@ struct MovieItemView: View {
 }
 
 #Preview {
-    MovieItemView(movie: Movie(id: 1, title: "Title", overview: "Overview: Avengers was first released in 2012. Connection has no local endpoint", releaseDate: "2024-05-02", posterPath: nil, originalLanguage: nil, voteAverage: 5))
+    MovieItemView(movie: Movie(
+        id: 1,
+        title: "Title",
+        overview: "Overview: Avengers was first released in 2012",
+        releaseDate: "2024-05-02",
+        posterPath: nil,
+        originalLanguage: nil,
+        voteAverage: 5)
+    )
 }
