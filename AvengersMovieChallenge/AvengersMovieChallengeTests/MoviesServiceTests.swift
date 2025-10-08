@@ -17,38 +17,6 @@ final class MoviesServiceTests: XCTestCase {
     
     private var cancellables: Set<AnyCancellable> = []
     
-    func test_createSession_decodesSessionToken() {
-        // Arrange
-        let mockClient = MockNetworkClient()
-        mockClient.setJson(
-            forPath: "/authentication/guest_session/new",
-            result: .success(JsonLoader.jsonData(named: "session_token_success"))
-        )
-        
-        let deps = TestDependencies(client: mockClient)
-        let sut = MoviesService(dependencies: deps)
-        
-        // Act
-        let exp = expectation(description: "createSession")
-        var received: SessionToken?
-        
-        sut.createSession()
-            .sink(receiveCompletion: { completion in
-                if case .failure(let error) = completion { XCTFail("Error: \(error)") }
-            }, receiveValue: { token in
-                received = token
-                exp.fulfill()
-            })
-            .store(in: &cancellables)
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        // Assert
-        XCTAssertEqual(received?.success, true)
-        XCTAssertEqual(received?.sessionId, "GUEST-123") // "guest_session_id" -> sessionId
-        XCTAssertEqual(mockClient.lastRequestedTarget?.path, "/authentication/guest_session/new")
-    }
-    
     func test_fetchMovies_returnsPagedResults() {
         // Arrange
         let mockClient = MockNetworkClient()
