@@ -8,13 +8,6 @@
 import Foundation
 import Combine
 
-/*enum HomeDisplayType: String, CaseIterable {
-    case nowPlaying = "Now Playing"
-    case popular = "Popular"
-    case topRated = "Top Rated"
-    case upcoming = "Upcoming"
-}*/
-
 protocol MoviesViewModelDependenciesType {
     var moviesService: MoviesServiceType { get }
 }
@@ -26,7 +19,7 @@ struct MoviesViewModelDependencies: MoviesViewModelDependenciesType {
 class MoviesViewModel: ObservableObject {
     
     @Published var isLoading = false
-    @Published var nowPlaying: [Movie] = []
+    @Published var movies: [Movie] = []
     @Published var isFinished = false
     @Published var currentPage = 0
     @Published var movieDetailId: Int?
@@ -59,7 +52,7 @@ class MoviesViewModel: ObservableObject {
                     break
                 }
             } receiveValue: { [weak self] response in
-                self?.nowPlaying += response.results
+                self?.movies += response.results
                 self?.isFinished = response.page == response.totalPages
                 self?.currentPage = response.page
             }

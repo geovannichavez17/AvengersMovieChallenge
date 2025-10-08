@@ -15,12 +15,12 @@ struct MoviesView: View {
     ]
     var body: some View {
         ZStack {
-            Color.yellow.ignoresSafeArea(.all)
+            Color.black.ignoresSafeArea(.all)
             
             VStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 0) {
-                        ForEach(viewModel.nowPlaying) { item in
+                        ForEach(viewModel.movies) { item in
                             MovieItemView(movie: item)
                                 .frame(height: 350)
                                 .onTapGesture {
@@ -28,6 +28,7 @@ struct MoviesView: View {
                                 }
                         }
                     }
+                    .padding()
                     
                     LazyVStack {
                         if !viewModel.isFinished {
@@ -39,7 +40,6 @@ struct MoviesView: View {
                     }
                 }
             }
-            .padding()
             .ignoresSafeArea(edges: .bottom)
         }
         .navigationTitle("Movies")
@@ -49,6 +49,22 @@ struct MoviesView: View {
         }
         .toolbarBackground(Color(.darkGunmetal), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    //isFavorite.toggle()
+                } label: {
+                    //Image(systemName: isFavorite ? "heart.fill" : "heart")
+                    Image(systemName: "heart")
+                }
+                /*Menu {
+                    Button("Compartir", systemImage: "square.and.arrow.up") { /* … */ }
+                    Button("Reportar", systemImage: "exclamationmark.bubble") { /* … */ }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }*/
+            }
+        }
         
     }
 }

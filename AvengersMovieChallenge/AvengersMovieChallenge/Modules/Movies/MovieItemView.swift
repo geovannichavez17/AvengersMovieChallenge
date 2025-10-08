@@ -11,11 +11,12 @@ struct MovieItemView: View {
     var movie: Movie
         
         var body: some View {
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 0) {
                 AsyncImage(url: URL(string: K.imageBasePath + (movie.posterPath ?? ""))) { image in
                     image
                         .resizable()
-                        .aspectRatio(163/180, contentMode: .fit)
+                        .aspectRatio(contentMode: .fill)
+                        
                 } placeholder: {
                     HStack {
                         Spacer()
@@ -23,25 +24,32 @@ struct MovieItemView: View {
                         Spacer()
                     }
                 }
-                .frame(height: 180)
+                .frame(height: 235)
+                .clipped()
                 
-                Text(movie.title ?? "")
-                    .font(.body)
-                    .bold()
-                
-                HStack {
-                    Text(movie.releaseDate ?? "")
-                        .font(.caption)
-                    Spacer()
-                    Image(systemName: "star.fill")
-                    Text(String(movie.voteAverage ?? 0))
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(movie.title ?? "")
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(2)
+                        .font(.body)
+                        .bold()
+                    
+                    HStack {
+                        let releaseDate = (movie.releaseDate?.isEmpty == false ? movie.releaseDate : nil) ?? "No date available"
+                        Text(releaseDate)
+                            .font(.caption)
+                        Spacer()
+                        Image(systemName: "star.fill")
+                        Text(String(movie.voteAverage ?? 0))
+                            .font(.caption)
+                    }
+                    
+                    Text(movie.overview ?? "")
                         .font(.caption)
                 }
-                
-                Text(movie.overview ?? "")
-                    .font(.caption)
+                .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                .frame(maxHeight: 96)
             }
-            .padding()
             .foregroundStyle(.white)
             .background(Color(.darkGunmetal))
             .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -49,5 +57,5 @@ struct MovieItemView: View {
 }
 
 #Preview {
-    MovieItemView(movie: Movie(id: 1, title: "Title", overview: "Overview", releaseDate: nil, posterPath: nil, originalLanguage: nil, voteAverage: 5))
+    MovieItemView(movie: Movie(id: 1, title: "Title", overview: "Overview: Avengers was first released in 2012. Connection has no local endpoint", releaseDate: "2024-05-02", posterPath: nil, originalLanguage: nil, voteAverage: 5))
 }
