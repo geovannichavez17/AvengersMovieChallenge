@@ -46,10 +46,10 @@ struct FavoriteItemView: View {
                 }
                 
             }
-            .padding(EdgeInsets(top: 24, leading: 8, bottom: 24, trailing: 8))
+            .padding(EdgeInsets(top: 24, leading: 16, bottom: 24, trailing: 16))
             .frame(maxWidth: .infinity, maxHeight: 96)
         }
-        .frame(height: 120)
+        .frame(height: 110)
         .foregroundStyle(.white)
         .background(Color(.darkGunmetal))
         .clipShape(RoundedRectangle(cornerRadius: 15))
