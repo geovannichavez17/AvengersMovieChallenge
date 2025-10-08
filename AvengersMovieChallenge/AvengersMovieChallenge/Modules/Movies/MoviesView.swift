@@ -50,19 +50,14 @@ struct MoviesView: View {
         .toolbarBackground(Color(.darkGunmetal), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button {
-                    //isFavorite.toggle()
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    FavoritesView()
                 } label: {
-                    //Image(systemName: isFavorite ? "heart.fill" : "heart")
                     Image(systemName: "heart")
+                        .imageScale(.large)
+                        .accessibilityLabel("Favoritos")
                 }
-                /*Menu {
-                    Button("Compartir", systemImage: "square.and.arrow.up") { /* … */ }
-                    Button("Reportar", systemImage: "exclamationmark.bubble") { /* … */ }
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                }*/
             }
         }
         
@@ -72,9 +67,6 @@ struct MoviesView: View {
 #Preview {
     NavigationStack {
         MoviesView()
-            /*.tint(.white)
-            .toolbarBackground(Color(.darkGunmetal), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)*/
             
     }
     
