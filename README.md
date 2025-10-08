@@ -5,7 +5,6 @@ Cliente iOS que lista y detalla películas (búsqueda “Avengers”), permite m
 ## Contenido
 - Arquitectura
 - Decisiones técnicas
-- Estructura del proyecto
 - Testing
 
 ## Arquitectura
